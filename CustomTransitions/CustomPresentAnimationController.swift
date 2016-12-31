@@ -11,7 +11,7 @@ import UIKit
 class CustomPresentAnimationController: NSObject,UIViewControllerAnimatedTransitioning {
     
     internal func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
-        return 2.5
+        return 5.5
     }
     
     internal func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
@@ -19,19 +19,24 @@ class CustomPresentAnimationController: NSObject,UIViewControllerAnimatedTransit
         let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
         let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         let finalFrameForVC = transitionContext.finalFrameForViewController(toViewController)
+        let finalModFrame = CGRectMake(finalFrameForVC.origin.x, finalFrameForVC.origin.y + 45, finalFrameForVC.width, finalFrameForVC.height - 45)
         let containerView = transitionContext.containerView()
         let bounds = UIScreen.mainScreen().bounds
 //        toViewController.view.frame = CGRectOffset(finalFrameForVC, 0, bounds.size.height)
-        toViewController.view.frame = CGRectOffset(finalFrameForVC, 0, -bounds.size.height)
+        toViewController.view.frame = CGRectOffset(finalModFrame, 0, bounds.size.height)
+        
+        fromViewController.view.alpha = 0.5
         containerView.addSubview(toViewController.view)
         
-        UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: .CurveLinear, animations: {
+        UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .CurveLinear, animations: {
             fromViewController.view.alpha = 0.5
-            toViewController.view.frame = finalFrameForVC
+            
+            toViewController.view.frame = finalModFrame
+            
             }, completion: {
                 finished in
                 transitionContext.completeTransition(true)
-                fromViewController.view.alpha = 1.0
+                fromViewController.view.alpha = 0.5
         })
     }
     
