@@ -18,9 +18,18 @@ class ItemsTableViewController: UITableViewController, UIViewControllerTransitio
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.delegate = self
-
+    }
+    
+    //Set the status bar style
+    internal override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.Default
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setNeedsStatusBarAppearanceUpdate()
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }

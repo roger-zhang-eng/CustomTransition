@@ -19,12 +19,11 @@ class CustomPresentAnimationController: NSObject,UIViewControllerAnimatedTransit
         let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
         let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         let finalFrameForVC = transitionContext.finalFrameForViewController(toViewController)
-        let finalModFrame = CGRectMake(finalFrameForVC.origin.x, finalFrameForVC.origin.y + 45, finalFrameForVC.width, finalFrameForVC.height - 45)
+        let finalModFrame = CGRectMake(finalFrameForVC.origin.x, finalFrameForVC.origin.y + 90, finalFrameForVC.width, finalFrameForVC.height - 90)
         let containerView = transitionContext.containerView()
         let bounds = UIScreen.mainScreen().bounds
 //        toViewController.view.frame = CGRectOffset(finalFrameForVC, 0, bounds.size.height)
         toViewController.view.frame = CGRectOffset(finalModFrame, 0, bounds.size.height)
-        
         fromViewController.view.alpha = 0.5
         containerView.addSubview(toViewController.view)
         
