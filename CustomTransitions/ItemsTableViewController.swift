@@ -8,16 +8,19 @@
 
 import UIKit
 
-class ItemsTableViewController: UITableViewController, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
+class ItemsTableViewController: UITableViewController, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate, ItemTableViewProtocol {
     
     let customPresentAnimationController = CustomPresentAnimationController()
     let customDismissAnimationController = CustomDismissAnimationController()
     let customNavigationAnimationController = CustomNavigationAnimationController()
     let customInteractionController = CustomInteractionController()
 
+    let viewName = "TableView"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.delegate = self
+        customDismissAnimationController.itemTableViewDelegate = self
     }
     
     //Set the status bar style
@@ -70,6 +73,11 @@ class ItemsTableViewController: UITableViewController, UIViewControllerTransitio
     
     func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return customInteractionController.transitionInProgress ? customInteractionController : nil
+    }
+    
+    //Mark: ItemTableViewProtocol
+    func tableViewPopup() {
+        self.view.alpha = 1.0
     }
 
 }

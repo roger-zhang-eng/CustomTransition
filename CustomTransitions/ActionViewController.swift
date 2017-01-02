@@ -10,6 +10,8 @@ import UIKit
 
 class ActionViewController: UIViewController {
 
+    let name = "ActionView"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.modalPresentationStyle = .OverCurrentContext
