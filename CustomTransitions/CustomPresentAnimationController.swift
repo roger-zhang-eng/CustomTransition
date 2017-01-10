@@ -29,6 +29,7 @@ class CustomPresentAnimationController: NSObject,UIViewControllerAnimatedTransit
         
         UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .CurveLinear, animations: {
             fromViewController.view.alpha = 0.5
+            fromViewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.8, 0.8)
             
             toViewController.view.frame = finalModFrame
             

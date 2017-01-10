@@ -23,7 +23,7 @@ class CustomDismissAnimationController: NSObject, UIViewControllerAnimatedTransi
     
     internal func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         //let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
-        //let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
+        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)!
         //let toView = transitionContext.viewForKey(UITransitionContextToViewKey)!
         
@@ -49,6 +49,8 @@ class CustomDismissAnimationController: NSObject, UIViewControllerAnimatedTransi
             //snapshotView!.frame = CGRectInset(fromViewController.view.frame, fromViewController.view.frame.size.width / 2, fromViewController.view.frame.size.height / 2)
             //toView.alpha = 1.0
             fromView.frame = finalModFrame
+            
+            toViewController.view.transform = CGAffineTransformIdentity
         }, completion: {
             finished in
             //snapshotView!.removeFromSuperview()
